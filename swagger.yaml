@@ -4,7 +4,7 @@ info:
   description: API для регистрации и авторизации пользователей
   version: 1.0.0
 servers:
-  - url: https://n8n.staz.bid/webhook
+  - url: https://server.com
     description: Основной сервер
 
 paths:
@@ -21,13 +21,13 @@ paths:
               properties:
                 email:
                   type: string
-                  example: yarmolchuk3@gmail.com
+                  example: email@gmail.com
                 password:
                   type: string
-                  example: Password1488!
+                  example: password
                 confirm_password:
                   type: string
-                  example: Password1488!
+                  example: password
       responses:
         "200":
           description: Успешная регистрация
@@ -65,7 +65,7 @@ paths:
                                 example: 9139c73e-48bf-4819-bbd2-47c7c516c3ed
                               email:
                                 type: string
-                                example: yarmolchuk4@gmail.com
+                                example: email@gmail.com
                               email_verified:
                                 type: boolean
                                 example: true
@@ -74,7 +74,7 @@ paths:
                                 example: basic_auth
                               preferred_username:
                                 type: string
-                                example: yarmolchuk4@gmail.com
+                                example: email@gmail.com
                               gender:
                                 type: string
                                 nullable: true
@@ -106,10 +106,10 @@ paths:
               properties:
                 email:
                   type: string
-                  example: yarmolchuk4@gmail.com
+                  example: email@gmail.com
                 password:
                   type: string
-                  example: Password1488!
+                  example: password
       responses:
         "200":
           description: Успешная авторизация
