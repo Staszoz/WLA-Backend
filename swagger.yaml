@@ -1,18 +1,18 @@
 openapi: 3.0.0
 info:
   title: User Authentication API
-  description: API для регистрации и авторизации пользователей
+  description: API for user registration and authentication
   version: 1.0.0
 servers:
   - url: https://server.com
-    description: Основной сервер
+    description: Main server
 
 paths:
   /user/signup:
     post:
-      summary: Регистрация пользователя
+      summary: User Registration
       requestBody:
-        description: Данные для регистрации пользователя
+        description: Data for user registration
         required: true
         content:
           application/json:
@@ -30,7 +30,7 @@ paths:
                   example: password
       responses:
         "200":
-          description: Успешная регистрация
+          description: Successful registration
           content:
             application/json:
               schema:
@@ -95,9 +95,9 @@ paths:
 
   /user/signin:
     post:
-      summary: Авторизация пользователя
+      summary: User Authentication
       requestBody:
-        description: Данные для авторизации пользователя
+        description: Data for user authentication
         required: true
         content:
           application/json:
@@ -112,7 +112,7 @@ paths:
                   example: password
       responses:
         "200":
-          description: Успешная авторизация
+          description: Successful authentication
           content:
             application/json:
               schema:
@@ -139,3 +139,54 @@ paths:
                           expires_in:
                             type: integer
                             example: 86400
+
+  /user/profile:
+    get:
+      summary: Retrieve User Profile
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Successful retrieval of user profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      profile:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 8bc637c0-0e37-45de-ae4f-2e3e5a45709d
+                          email:
+                            type: string
+                            example: yarmolchuk3@gmail.com
+                          nickname:
+                            type: string
+                            nullable: true
+                          preferred_username:
+                            type: string
+                            example: yarmolchuk3@gmail.com
+                          gender:
+                            type: string
+                            nullable: true
+                          birthdate:
+                            type: string
+                            nullable: true
+                          created_at:
+                            type: integer
+                            example: 1717940823
+                          updated_at:
+                            type: integer
+                            example: 1717940823
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
