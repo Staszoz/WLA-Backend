@@ -183,7 +183,29 @@ paths:
                           updated_at:
                             type: integer
                             example: 1717940823
-
+        "401":
+          description: Unauthorized access
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                          example: unauthorized
+                        path:
+                          type: array
+                          items:
+                            type: string
+                          example: ["profile"]
+                  data:
+                    type: object
+                    nullable: true
 components:
   securitySchemes:
     bearerAuth:
