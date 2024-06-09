@@ -1,0 +1,141 @@
+openapi: 3.0.0
+info:
+  title: User Authentication API
+  description: API для регистрации и авторизации пользователей
+  version: 1.0.0
+servers:
+  - url: https://n8n.staz.bid/webhook
+    description: Основной сервер
+
+paths:
+  /user/signup:
+    post:
+      summary: Регистрация пользователя
+      requestBody:
+        description: Данные для регистрации пользователя
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: yarmolchuk3@gmail.com
+                password:
+                  type: string
+                  example: Password1488!
+                confirm_password:
+                  type: string
+                  example: Password1488!
+      responses:
+        "200":
+          description: Успешная регистрация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      signup:
+                        type: object
+                        properties:
+                          message:
+                            type: string
+                            example: Signed up successfully.
+                          access_token:
+                            type: string
+                            example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+                          id_token:
+                            type: string
+                            nullable: true
+                          refresh_token:
+                            type: string
+                            nullable: true
+                          expires_in:
+                            type: integer
+                            example: 86400
+                          user:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                example: 9139c73e-48bf-4819-bbd2-47c7c516c3ed
+                              email:
+                                type: string
+                                example: yarmolchuk4@gmail.com
+                              email_verified:
+                                type: boolean
+                                example: true
+                              signup_methods:
+                                type: string
+                                example: basic_auth
+                              preferred_username:
+                                type: string
+                                example: yarmolchuk4@gmail.com
+                              gender:
+                                type: string
+                                nullable: true
+                              birthdate:
+                                type: string
+                                nullable: true
+                              roles:
+                                type: array
+                                items:
+                                  type: string
+                                  example: user
+                              created_at:
+                                type: integer
+                                example: 1717940950
+                              updated_at:
+                                type: integer
+                                example: 1717940950
+
+  /user/signin:
+    post:
+      summary: Авторизация пользователя
+      requestBody:
+        description: Данные для авторизации пользователя
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: yarmolchuk4@gmail.com
+                password:
+                  type: string
+                  example: Password1488!
+      responses:
+        "200":
+          description: Успешная авторизация
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      login:
+                        type: object
+                        properties:
+                          message:
+                            type: string
+                            example: Logged in successfully
+                          access_token:
+                            type: string
+                            example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+                          id_token:
+                            type: string
+                            example: eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...
+                          refresh_token:
+                            type: string
+                            nullable: true
+                          expires_in:
+                            type: integer
+                            example: 86400
