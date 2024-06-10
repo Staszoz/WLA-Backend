@@ -6,10 +6,20 @@ info:
 servers:
   - url: https://server.com
     description: Main server
+  - url: https://test.server.com
+    description: Test server
+
+tags:
+  - name: authorizer
+    description: Endpoints processed by Authorizer
+    externalDocs:
+      url: https://docs.authorizer.dev
 
 paths:
   /auth/signup:
     post:
+      tags:
+        - authorizer
       summary: User Registration
       requestBody:
         description: Data for user registration
@@ -95,6 +105,8 @@ paths:
 
   /auth/signin:
     post:
+      tags:
+        - authorizer
       summary: User Authentication
       requestBody:
         description: Data for user authentication
@@ -142,6 +154,8 @@ paths:
 
   /user/profile:
     get:
+      tags:
+        - authorizer
       summary: Retrieve User Profile
       security:
         - bearerAuth: []
@@ -212,4 +226,4 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      description: "Authorization header using the Bearer schema. Example: 'Authorization: Bearer <JWT>'"
+      description: "Authorization header using the Bearer schema. <b>Example</b>: 'Authorization: Bearer {JWT}'"
