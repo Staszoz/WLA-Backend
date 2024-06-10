@@ -212,3 +212,4 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+      description: "Authorization header using the Bearer schema. Example: 'Authorization: Bearer <JWT>'"
